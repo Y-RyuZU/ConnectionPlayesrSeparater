@@ -22,8 +22,12 @@ public final class ConnectionPlayesrSeparater extends Plugin implements Listener
     private static Map<String, Boolean> isServerOnline = new HashMap<>();
     public static ConnectionPlayesrSeparater CPS;
     private void checkOnline() {
+        System.out.println((int) getProxy().getServers().values().stream().filter(s -> isServerOnline.containsKey(s.getName())).count());
+        getProxy().getServers().values().stream().forEach(s -> System.out.println(s.getName()));
         for (ServerInfo info: getProxy().getServers().values().stream().filter(s -> isServerOnline.containsKey(s.getName())).collect(Collectors.toList())) {
             info.ping((result, error) -> isServerOnline.put(info.getName(), error != null));
+            info.ping((result, error) -> System.out.println(error != null));
+
         }
     }
     private int lastLobby = 0;
