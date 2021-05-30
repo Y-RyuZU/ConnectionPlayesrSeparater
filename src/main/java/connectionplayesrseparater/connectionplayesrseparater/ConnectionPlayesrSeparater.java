@@ -30,12 +30,13 @@ public final class ConnectionPlayesrSeparater extends Plugin implements Listener
 
     @EventHandler
     private void onConnect(ServerConnectEvent event) {
-            List<ServerInfo> lobbyServers = isServerOnline.keySet().stream().filter(s -> isServerOnline.get(s)).map(s -> getProxy().getServerInfo(s)).collect(Collectors.toList());
-            if(lobbyServers.size() == 0) {
-                event.setCancelled(true);
-            }
-            lastLobby = (lastLobby + 1) % lobbyServers.size();
-            event.setTarget(lobbyServers.get(lastLobby));
+        if(!event.getReason().equals(ServerConnectEvent.Reason.JOIN_PROXY)) {return;}
+        List<ServerInfo> lobbyServers = isServerOnline.keySet().stream().filter(s -> isServerOnline.get(s)).map(s -> getProxy().getServerInfo(s)).collect(Collectors.toList());
+        if(lobbyServers.size() == 0) {
+            event.setCancelled(true);
+        }
+        lastLobby = (lastLobby + 1) % lobbyServers.size();
+        event.setTarget(lobbyServers.get(lastLobby));
     }
 
     @Override
