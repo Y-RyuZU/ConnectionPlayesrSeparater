@@ -34,6 +34,7 @@ public final class ConnectionPlayesrSeparater extends Plugin implements Listener
         List<ServerInfo> lobbyServers = isServerOnline.keySet().stream().filter(s -> isServerOnline.get(s)).map(s -> getProxy().getServerInfo(s)).collect(Collectors.toList());
         if(lobbyServers.size() == 0) {
             event.setCancelled(true);
+            return;
         }
         lastLobby = (lastLobby + 1) % lobbyServers.size();
         event.setTarget(lobbyServers.get(lastLobby));
