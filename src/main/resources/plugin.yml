@@ -1,0 +1,19 @@
+name: ConnectionPlayesrSeparater
+version: ${project.version}
+main: connectionplayesrseparater.connectionplayesrseparater.ConnectionPlayesrSeparater
+description: Bungeeに接続しようとしているプレイヤーの転送先をConfigに指定されたサーバーからランダムに選ぶPluginです
+commands:
+  cps:
+    usage:  /cps
+    description: ConnectionPlayesrSeparaterの様々な設定ができる
+
+permissions:
+  cps.player:
+    default: true
+  cps.op:
+    default: op
+  cps.*:
+    children:
+      cps.op: true
+      cps.player: true
+
