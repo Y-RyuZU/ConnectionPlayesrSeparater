@@ -27,7 +27,8 @@ public final class ConnectionPlayesrSeparater extends Plugin implements Listener
         for (ServerInfo info: getProxy().getServers().values().stream().filter(s -> isServerOnline.containsKey(s.getName())).collect(Collectors.toList())) {
             info.ping((result, error) -> isServerOnline.put(info.getName(), error != null));
             info.ping((result, error) -> System.out.println(error != null));
-
+            info.ping((result, error) -> System.out.println(error.toString()));
+            info.ping((result, error) -> System.out.println(result.toString()));
         }
     }
     private int lastLobby = 0;
