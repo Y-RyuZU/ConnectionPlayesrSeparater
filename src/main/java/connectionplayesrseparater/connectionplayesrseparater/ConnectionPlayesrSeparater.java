@@ -44,7 +44,7 @@ public final class ConnectionPlayesrSeparater extends Plugin implements Listener
         reloadConfig();
         getProxy().getPluginManager().registerListener(this, this);
         getProxy().getPluginManager().registerCommand(this , new Command("cps"));
-        getProxy().getScheduler().schedule(this, new Task(), 0 , 200 , TimeUnit.MILLISECONDS);
+        getProxy().getScheduler().schedule(this, new Task(), 0 , 10 , TimeUnit.SECONDS);
     }
 
     @Override
